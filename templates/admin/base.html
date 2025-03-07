@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block navigation %}
+<a href="{{ url_for('admin_upload') }}" class="{% if request.endpoint == 'admin_upload' %}border-indigo-500 text-gray-900{% else %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700{% endif %} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+    Upload
+</a>
+<a href="{{ url_for('admin_lectures') }}" class="{% if request.endpoint == 'admin_lectures' %}border-indigo-500 text-gray-900{% else %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700{% endif %} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+    Manage Lectures
+</a>
+<a href="{{ url_for('admin_users') }}" class="{% if request.endpoint == 'admin_users' %}border-indigo-500 text-gray-900{% else %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700{% endif %} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+    Users
+</a>
+{% endblock %}
+
+{% block user_menu %}
+<span class="text-sm font-medium text-gray-500">Admin Panel</span>
+<a href="{{ url_for('logout') }}" class="ml-4 text-gray-500 hover:text-gray-700">
+    <i class="fas fa-sign-out-alt"></i>
+</a>
+{% endblock %}
