@@ -2,18 +2,11 @@ services:
   - type: web
     name: fresco-learning
     env: python
-    buildCommand: |
-      curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-      apt-get install -y nodejs
-      npm install
-      npx tailwindcss -i ./static/css/tailwind-base.css -o ./static/css/tailwind.css --minify
-      pip install -r requirements.txt
+    buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
     envVars:
       - key: FLASK_ENV
         value: production
-      - key: NODE_VERSION
-        value: 18.x
       - key: PYTHON_VERSION
         value: 3.9.0
       - key: SECRET_KEY
