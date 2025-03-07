@@ -4,14 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Fresco Learning Platform{% endblock %}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Pin Tailwind CSS version and add integrity check -->
+    <script src="https://cdn.tailwindcss.com?v=3.4.1" crossorigin="anonymous"></script>
+    <!-- Add SRI hashes for security -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Base styles -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
+        /* Ensure Tailwind loads properly */
+        .bg-gray-50 { background-color: rgb(249, 250, 251); }
+        .bg-white { background-color: rgb(255, 255, 255); }
+        .text-gray-900 { color: rgb(17, 24, 39); }
+        .text-gray-500 { color: rgb(107, 114, 128); }
     </style>
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
     {% block head %}{% endblock %}
 </head>
 <body class="bg-gray-50">
