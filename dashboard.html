@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Fresco Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="text-2xl font-bold text-gray-900">Fresco</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="index.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Home
+                        </a>
+                        <a href="lecture.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Lectures
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-900">John Doe</span>
+                    <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=John+Doe" alt="User avatar">
+                    <a href="signin.html" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- User Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="text-sm font-medium text-gray-500">Courses in Progress</div>
+                <div class="mt-2 text-3xl font-semibold text-gray-900">3</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="text-sm font-medium text-gray-500">Completed Lectures</div>
+                <div class="mt-2 text-3xl font-semibold text-gray-900">12</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="text-sm font-medium text-gray-500">Hours Watched</div>
+                <div class="mt-2 text-3xl font-semibold text-gray-900">24</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="text-sm font-medium text-gray-500">Subscription Status</div>
+                <div class="mt-2 text-xl font-semibold text-indigo-600">Premium</div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="bg-white rounded-lg shadow-sm mb-8">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-lg font-medium text-gray-900">Recent Activity</h2>
+            </div>
+            <div class="divide-y divide-gray-200">
+                <div class="px-6 py-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-play-circle text-indigo-600 text-xl"></i>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-900">Continued watching "Introduction to Social Systems"</p>
+                            <p class="text-sm text-gray-500">2 hours ago</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 py-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-certificate text-green-600 text-xl"></i>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-900">Completed "Resource Management Basics"</p>
+                            <p class="text-sm text-gray-500">Yesterday</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 py-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-bookmark text-blue-600 text-xl"></i>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-900">Saved "Future Technology" course</p>
+                            <p class="text-sm text-gray-500">2 days ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Saved Content -->
+        <div class="bg-white rounded-lg shadow-sm">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-lg font-medium text-gray-900">Saved for Later</h2>
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Saved Item 1 -->
+                    <div class="border rounded-lg overflow-hidden">
+                        <div class="aspect-w-16 aspect-h-9 bg-gray-100">
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-play-circle text-gray-400 text-4xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-sm font-medium text-gray-900">Future by Design</h3>
+                            <p class="mt-1 text-sm text-gray-500">45 min lecture</p>
+                        </div>
+                    </div>
+
+                    <!-- Saved Item 2 -->
+                    <div class="border rounded-lg overflow-hidden">
+                        <div class="aspect-w-16 aspect-h-9 bg-gray-100">
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-play-circle text-gray-400 text-4xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-sm font-medium text-gray-900">Resource Based Economy</h3>
+                            <p class="mt-1 text-sm text-gray-500">60 min lecture</p>
+                        </div>
+                    </div>
+
+                    <!-- Saved Item 3 -->
+                    <div class="border rounded-lg overflow-hidden">
+                        <div class="aspect-w-16 aspect-h-9 bg-gray-100">
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-play-circle text-gray-400 text-4xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-sm font-medium text-gray-900">Technology and Society</h3>
+                            <p class="mt-1 text-sm text-gray-500">30 min lecture</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
