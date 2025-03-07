@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - Fresco Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="text-2xl font-bold text-gray-900">Fresco</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="index.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Home
+                        </a>
+                        <a href="lecture.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Lectures
+                        </a>
+                        <a href="community.html" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Community
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="dashboard.html" class="flex items-center space-x-2">
+                        <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=John+Doe" alt="User avatar">
+                        <span class="text-sm font-medium text-gray-700">John Doe</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Community Hub -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Community Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="text-sm font-medium text-gray-500">Active Members</div>
+                <div class="mt-2 text-3xl font-semibold text-gray-900">1,234</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="text-sm font-medium text-gray-500">Discussions</div>
+                <div class="mt-2 text-3xl font-semibold text-gray-900">856</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="text-sm font-medium text-gray-500">Contributions</div>
+                <div class="mt-2 text-3xl font-semibold text-gray-900">2,467</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="text-sm font-medium text-gray-500">Online Now</div>
+                <div class="mt-2 text-3xl font-semibold text-gray-900">42</div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Discussion Feed -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-lg shadow-sm">
+                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                        <h2 class="text-lg font-medium text-gray-900">Recent Discussions</h2>
+                        <button class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700">
+                            New Discussion
+                        </button>
+                    </div>
+                    
+                    <!-- Discussion List -->
+                    <div class="divide-y divide-gray-200">
+                        <!-- Discussion Item 1 -->
+                        <div class="p-6">
+                            <div class="flex space-x-3">
+                                <div class="flex-shrink-0">
+                                    <img class="h-10 w-10 rounded-full" src="https://ui-avatars.com/api/?name=Alice+Smith" alt="Alice Smith">
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-sm font-medium text-gray-900">
+                                        <a href="#" class="hover:underline">Resource-Based Economy Implementation</a>
+                                    </p>
+                                    <p class="text-sm text-gray-500">
+                                        Started by Alice Smith • 2h ago • Social Systems
+                                    </p>
+                                    <div class="mt-2 text-sm text-gray-700">
+                                        How can we practically transition to a resource-based economy in today's world?
+                                    </div>
+                                    <div class="mt-2 flex items-center space-x-4">
+                                        <button class="text-gray-500 hover:text-gray-700">
+                                            <i class="far fa-comment"></i>
+                                            <span class="ml-1">24 replies</span>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-gray-700">
+                                            <i class="far fa-heart"></i>
+                                            <span class="ml-1">12 likes</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Discussion Item 2 -->
+                        <div class="p-6">
+                            <div class="flex space-x-3">
+                                <div class="flex-shrink-0">
+                                    <img class="h-10 w-10 rounded-full" src="https://ui-avatars.com/api/?name=Bob+Johnson" alt="Bob Johnson">
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-sm font-medium text-gray-900">
+                                        <a href="#" class="hover:underline">Future of Automation</a>
+                                    </p>
+                                    <p class="text-sm text-gray-500">
+                                        Started by Bob Johnson • 5h ago • Technology
+                                    </p>
+                                    <div class="mt-2 text-sm text-gray-700">
+                                        Discussing the impact of automation on future society and employment.
+                                    </div>
+                                    <div class="mt-2 flex items-center space-x-4">
+                                        <button class="text-gray-500 hover:text-gray-700">
+                                            <i class="far fa-comment"></i>
+                                            <span class="ml-1">18 replies</span>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-gray-700">
+                                            <i class="far fa-heart"></i>
+                                            <span class="ml-1">8 likes</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="lg:col-span-1 space-y-8">
+                <!-- Top Contributors -->
+                <div class="bg-white rounded-lg shadow-sm">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Top Contributors</h3>
+                    </div>
+                    <div class="px-6 py-4">
+                        <ul class="space-y-4">
+                            <li class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=Sarah+Wilson" alt="Sarah Wilson">
+                                    <span class="ml-3 text-sm font-medium text-gray-900">Sarah Wilson</span>
+                                </div>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    Expert
+                                </span>
+                            </li>
+                            <li class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=Mike+Brown" alt="Mike Brown">
+                                    <span class="ml-3 text-sm font-medium text-gray-900">Mike Brown</span>
+                                </div>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                    Mentor
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Active Topics -->
+                <div class="bg-white rounded-lg shadow-sm">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Active Topics</h3>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="space-y-4">
+                            <a href="#" class="block">
+                                <span class="text-sm font-medium text-gray-900 hover:text-indigo-600">#resource-economy</span>
+                                <p class="mt-1 text-sm text-gray-500">128 discussions</p>
+                            </a>
+                            <a href="#" class="block">
+                                <span class="text-sm font-medium text-gray-900 hover:text-indigo-600">#future-technology</span>
+                                <p class="mt-1 text-sm text-gray-500">96 discussions</p>
+                            </a>
+                            <a href="#" class="block">
+                                <span class="text-sm font-medium text-gray-900 hover:text-indigo-600">#social-systems</span>
+                                <p class="mt-1 text-sm text-gray-500">84 discussions</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Private Messages -->
+                <div class="bg-white rounded-lg shadow-sm">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Messages</h3>
+                    </div>
+                    <div class="px-6 py-4">
+                        <button class="w-full flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                            Open Messages
+                        </button>
+                        <div class="mt-4 text-sm text-gray-500 text-center">
+                            You have 3 unread messages
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
