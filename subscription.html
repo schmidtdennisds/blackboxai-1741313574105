@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Plans - Fresco Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .plan-card {
+            transition: transform 0.2s ease-in-out;
+        }
+        .plan-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="text-2xl font-bold text-gray-900">Fresco</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="index.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Home
+                        </a>
+                        <a href="lecture.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Lectures
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <a href="signin.html" class="text-gray-500 hover:text-gray-700">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Subscription Plans -->
+    <div class="bg-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Choose Your Learning Journey
+                </h2>
+                <p class="mt-4 text-xl text-gray-600">
+                    Select the plan that best fits your learning needs
+                </p>
+            </div>
+
+            <div class="mt-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-4">
+                <!-- Free Tier -->
+                <div class="plan-card border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200 bg-white">
+                    <div class="p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Free Access</h3>
+                        <p class="mt-4 text-sm text-gray-500">Perfect for getting started with Fresco's introductory content</p>
+                        <p class="mt-8">
+                            <span class="text-4xl font-extrabold text-gray-900">$0</span>
+                            <span class="text-base font-medium text-gray-500">/month</span>
+                        </p>
+                        <a href="signin.html" class="mt-8 block w-full bg-indigo-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Get Started</a>
+                    </div>
+                    <div class="pt-6 pb-8 px-6">
+                        <h4 class="text-sm font-medium text-gray-900 tracking-wide uppercase">What's included</h4>
+                        <ul class="mt-6 space-y-4">
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500 flex-shrink-0"></i>
+                                <span class="text-sm text-gray-500">Access to introductory lectures</span>
+                            </li>
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500 flex-shrink-0"></i>
+                                <span class="text-sm text-gray-500">Basic community features</span>
+                            </li>
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500 flex-shrink-0"></i>
+                                <span class="text-sm text-gray-500">Limited content access</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Standard Tier -->
+                <div class="plan-card border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200 bg-white">
+                    <div class="p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Standard Access</h3>
+                        <p class="mt-4 text-sm text-gray-500">Full access to all lectures and basic features</p>
+                        <p class="mt-8">
+                            <span class="text-4xl font-extrabold text-gray-900">$15</span>
+                            <span class="text-base font-medium text-gray-500">/month</span>
+                        </p>
+                        <a href="signin.html" class="mt-8 block w-full bg-indigo-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Subscribe Now</a>
+                    </div>
+                    <div class="pt-6 pb-8 px-6">
+                        <h4 class="text-sm font-medium text-gray-900 tracking-wide uppercase">What's included</h4>
+                        <ul class="mt-6 space-y-4">
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500 flex-shrink-0"></i>
+                                <span class="text-sm text-gray-500">Full access to all lectures</span>
+                            </li>
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500 flex-shrink-0"></i>
+                                <span class="text-sm text-gray-500">Basic community features</span>
+                            </li>
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500 flex-shrink-0"></i>
+                                <span class="text-sm text-gray-500">Standard video quality</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Premium Tier -->
+                <div class="plan-card border-2 border-indigo-500 rounded-lg shadow-lg divide-y divide-gray-200 bg-white relative">
+                    <div class="absolute -top-4 inset-x-0 flex justify-center">
+                        <span class="inline-flex items-center px-4 py-1 rounded-full text-sm font-semibold bg-indigo-100 text-indigo-800">
+                            Most Popular
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Premium Access</h3>
+                        <p class="mt-4 text-sm text-gray-500">Enhanced features and early access</p>
+                        <p class="mt-8">
+                            <span class="text-4xl font-extrabold text-gray-900">$25</span>
+                            <span class="text-base font-medium text-gray-500">/month</span>
+                        </p>
+                        <a href="signin.html" class="mt-8 block w-full bg-indigo-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Subscribe Now</a>
+                    </div>
+                    <div class="pt-6 pb-8 px-6">
+                        <h4 class="text-sm font-medium text-gray-900 tracking-wide uppercase">What's included</h4>
+                        <ul class="mt-6 space-y-4">
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500 flex-shrink-0"></i>
+                                <span class="text-sm text-gray-500">Everything in Standard</span>
+                            </li>
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500 flex-shrink-0"></i>
+                                <span class="text-sm text-gray-500">Early access to new content</span>
+                            </li>
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500 flex-shrink-0"></i>
+                                <span class="text-sm text-gray-500">HD video quality</span>
+                            </li>
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500 flex-shrink-0"></i>
+                                <span class="text-sm text-gray-500">Advanced community features</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Scholarship Tier -->
+                <div class="plan-card border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200 bg-white">
+                    <div class="p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Scholarship Access</h3>
+                        <p class="mt-4 text-sm text-gray-500">For qualified students and researchers</p>
+                        <p class="mt-8">
+                            <span class="text-4xl font-extrabold text-gray-900">$0</span>
+                            <span class="text-base font-medium text-gray-500">/year</span>
+                        </p>
+                        <button onclick="showScholarshipModal()" class="mt-8 block w-full bg-indigo-100 border border-transparent rounded-md py-2 text-sm font-semibold text-indigo-700 text-center hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Apply Now</button>
+                    </div>
+                    <div class="pt-6 pb-8 px-6">
+                        <h4 class="text-sm font-medium text-gray-900 tracking-wide uppercase">Requirements</h4>
+                        <ul class="mt-6 space-y-4">
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500 flex-shrink-0"></i>
+                                <span class="text-sm text-gray-500">Proof of academic status</span>
+                            </li>
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500 flex-shrink-0"></i>
+                                <span class="text-sm text-gray-500">Research proposal</span>
+                            </li>
+                            <li class="flex space-x-3">
+                                <i class="fas fa-check text-green-500 flex-shrink-0"></i>
+                                <span class="text-sm text-gray-500">Annual renewal required</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="mt-12 bg-gray-50 rounded-lg p-8">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Subscription Information</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-900 mb-2">Payment Options</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-credit-card text-gray-400"></i>
+                                <span class="text-sm text-gray-600">Major credit cards accepted</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fab fa-paypal text-gray-400"></i>
+                                <span class="text-sm text-gray-600">PayPal available</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-900 mb-2">Subscription Terms</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-calendar text-gray-400"></i>
+                                <span class="text-sm text-gray-600">Monthly or annual billing</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-clock text-gray-400"></i>
+                                <span class="text-sm text-gray-600">Cancel anytime</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scholarship Application Modal -->
+    <div id="scholarship-modal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900">Scholarship Application</h3>
+                    <button onclick="closeScholarshipModal()" class="text-gray-400 hover:text-gray-500">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <form id="scholarship-form" onsubmit="handleScholarshipSubmit(event)" class="space-y-6">
+                    <!-- Personal Information -->
+                    <div>
+                        <h4 class="text-lg font-medium text-gray-900 mb-4">Personal Information</h4>
+                        <div class="grid grid-cols-1 gap-4">
+                            <div>
+                                <label for="full-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="full-name" name="full-name" required
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                <input type="email" id="email" name="email" required
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academic Information -->
+                    <div>
+                        <h4 class="text-lg font-medium text-gray-900 mb-4">Academic Information</h4>
+                        <div class="grid grid-cols-1 gap-4">
+                            <div>
+                                <label for="institution" class="block text-sm font-medium text-gray-700">Institution</label>
+                                <input type="text" id="institution" name="institution" required
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                            <div>
+                                <label for="field-of-study" class="block text-sm font-medium text-gray-700">Field of Study</label>
+                                <input type="text" id="field-of-study" name="field-of-study" required
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Research Proposal -->
+                    <div>
+                        <h4 class="text-lg font-medium text-gray-900 mb-4">Research Proposal</h4>
+                        <div>
+                            <label for="proposal" class="block text-sm font-medium text-gray-700">
+                                How do you plan to use Fresco's content in your research? (minimum 200 words)
+                            </label>
+                            <textarea id="proposal" name="proposal" rows="4" required
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                            <p class="mt-2 text-sm text-gray-500">
+                                <span id="word-count">0</span> words (minimum 200)
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">
+                            Proof of Academic Status
+                        </label>
+                        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+                                <i class="fas fa-upload text-gray-400 text-3xl mb-3"></i>
+                                <div class="flex text-sm text-gray-600">
+                                    <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                        <span>Upload a file</span>
+                                        <input id="file-upload" name="file-upload" type="file" class="sr-only" required>
+                                    </label>
+                                    <p class="pl-1">or drag and drop</p>
+                                </div>
+                                <p class="text-xs text-gray-500">
+                                    PDF, DOC up to 10MB
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Error/Success Messages -->
+                    <div id="scholarship-error" class="hidden rounded-md bg-red-50 p-4">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-exclamation-circle text-red-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-red-800" id="error-message"></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="scholarship-success" class="hidden rounded-md bg-green-50 p-4">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-check-circle text-green-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-green-800">Application submitted successfully!</h3>
+                                <p class="mt-2 text-sm text-green-700">
+                                    We'll review your application and get back to you within 5 business days.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex justify-end">
+                        <button type="button" onclick="closeScholarshipModal()" class="mr-3 px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Submit Application
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal Controls
+        function showScholarshipModal() {
+            document.getElementById('scholarship-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeScholarshipModal() {
+            document.getElementById('scholarship-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            document.getElementById('scholarship-form').reset();
+            document.getElementById('scholarship-error').classList.add('hidden');
+            document.getElementById('scholarship-success').classList.add('hidden');
+            document.getElementById('word-count').textContent = '0';
+        }
+
+        // Word Count
+        document.getElementById('proposal').addEventListener('input', function(e) {
+            const words = e.target.value.trim().split(/\s+/).length;
+            document.getElementById('word-count').textContent = words;
+        });
+
+        // File Upload Preview
+        document.getElementById('file-upload').addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name;
+            if (fileName) {
+                const fileInfo = e.target.parentElement.nextElementSibling;
+                fileInfo.textContent = `Selected file: ${fileName}`;
+            }
+        });
+
+        // Form Submission
+        function handleScholarshipSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const errorDiv = document.getElementById('scholarship-error');
+            const successDiv = document.getElementById('scholarship-success');
+            const errorMessage = document.getElementById('error-message');
+
+            // Basic validation
+            const proposal = document.getElementById('proposal').value;
+            const wordCount = proposal.trim().split(/\s+/).length;
+
+            if (wordCount < 200) {
+                errorMessage.textContent = 'Research proposal must be at least 200 words.';
+                errorDiv.classList.remove('hidden');
+                successDiv.classList.add('hidden');
+                return;
+            }
+
+            // If validation passes
+            errorDiv.classList.add('hidden');
+            successDiv.classList.remove('hidden');
+
+            // Close modal after 3 seconds
+            setTimeout(closeScholarshipModal, 3000);
+        }
+
+        // Prevent modal close when clicking inside the form
+        document.querySelector('#scholarship-modal > div > div').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('scholarship-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeScholarshipModal();
+            }
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeScholarshipModal();
+            }
+        });
+    </script>
+</body>
+</html>
