@@ -1,0 +1,633 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.min.js"></script>
+<style>
+    .transcript-segment.active {
+        background-color: #EEF2FF;
+        border-left: 3px solid #6366F1;
+    }
+    #waveform {
+        background: #F9FAFB;
+        border-radius: 0.5rem;
+        padding: 1rem;
+    }
+    .time-marker {
+        color: #6B7280;
+        font-size: 0.875rem;
+        font-weight: 500;
+        min-width: 3rem;
+    }
+    .tab-content {
+        display: none;
+    }
+    .tab-content.active {
+        display: block;
+    }
+    .speed-option {
+        transition: all 0.2s;
+    }
+    .speed-option:hover {
+        background-color: #EEF2FF;
+    }
+    .speed-option.active {
+        background-color: #E0E7FF;
+        color: #4F46E5;
+    }
+    .note {
+        transition: all 0.2s;
+    }
+    .note:hover {
+        transform: translateX(4px);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Audio Player Section -->
+    <div class="lg:col-span-2">
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h1 class="text-2xl font-bold text-gray-900">{{ lecture.title }}</h1>
+                <div class="flex items-center space-x-2">
+                    <button onclick="toggleFavorite()" class="text-gray-400 hover:text-yellow-500" title="Add to favorites">
+                        <i id="favorite-icon" class="far fa-star"></i>
+                    </button>
+                    <button onclick="showShareModal()" class="text-gray-400 hover:text-indigo-500" title="Share lecture">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Audio Status -->
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-2">
+                    <span id="loading-status" class="text-sm text-gray-500">
+                        <i class="fas fa-spinner fa-spin"></i> Loading audio...
+                    </span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="speed-button" onclick="toggleSpeedMenu()" class="flex items-center space-x-1 text-sm text-gray-600 hover:text-gray-900">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span id="current-speed">1.0x</span>
+                        </button>
+                        <div id="speed-menu" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg z-10">
+                            <div class="py-1">
+                                <button onclick="setPlaybackSpeed(0.5)" class="speed-option block w-full px-4 py-2 text-sm text-left">0.5x</button>
+                                <button onclick="setPlaybackSpeed(0.75)" class="speed-option block w-full px-4 py-2 text-sm text-left">0.75x</button>
+                                <button onclick="setPlaybackSpeed(1.0)" class="speed-option block w-full px-4 py-2 text-sm text-left active">1.0x</button>
+                                <button onclick="setPlaybackSpeed(1.25)" class="speed-option block w-full px-4 py-2 text-sm text-left">1.25x</button>
+                                <button onclick="setPlaybackSpeed(1.5)" class="speed-option block w-full px-4 py-2 text-sm text-left">1.5x</button>
+                                <button onclick="setPlaybackSpeed(2.0)" class="speed-option block w-full px-4 py-2 text-sm text-left">2.0x</button>
+                            </div>
+                        </div>
+                    </div>
+                    <span id="current-time" class="text-sm text-gray-500">0:00</span>
+                    <span class="text-sm text-gray-500">/</span>
+                    <span id="total-duration" class="text-sm text-gray-500">0:00</span>
+                </div>
+            </div>
+
+            <!-- Waveform -->
+            <div id="waveform" class="mb-4"></div>
+            
+            <!-- Controls -->
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-4">
+                    <button id="previous" class="text-gray-600 hover:text-gray-900" title="Previous 10 seconds">
+                        <i class="fas fa-backward"></i>
+                    </button>
+                    <button id="playPause" class="w-12 h-12 flex items-center justify-center rounded-full bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button id="next" class="text-gray-600 hover:text-gray-900" title="Next 10 seconds">
+                        <i class="fas fa-forward"></i>
+                    </button>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="volume-btn" class="text-gray-600 hover:text-gray-900">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <input type="range" id="volume" min="0" max="100" value="100" 
+                        class="w-24 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <div id="error-message" class="hidden bg-red-50 border-l-4 border-red-400 p-4 mb-4">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-exclamation-circle text-red-400"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-red-700">
+                            There was an error loading the audio file. Please try again later.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <p class="text-gray-600 mt-4">{{ lecture.description }}</p>
+
+            <!-- Tags -->
+            <div class="mt-4 flex flex-wrap gap-2">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
+                    {{ lecture.category }}
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium 
+                    {% if lecture.difficulty == 'beginner' %}bg-green-100 text-green-800
+                    {% elif lecture.difficulty == 'intermediate' %}bg-yellow-100 text-yellow-800
+                    {% else %}bg-red-100 text-red-800{% endif %}">
+                    {{ lecture.difficulty|title }}
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                    {{ lecture.duration }} minutes
+                </span>
+            </div>
+        </div>
+
+        <!-- Notes Section -->
+        <div class="mt-8 bg-white rounded-lg shadow-sm overflow-hidden p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-semibold text-gray-900">My Notes</h2>
+                <button onclick="addNote()" class="text-indigo-600 hover:text-indigo-700">
+                    <i class="fas fa-plus"></i> Add Note
+                </button>
+            </div>
+            <div id="notes-container" class="space-y-4">
+                <!-- Notes will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="lg:col-span-1">
+        <!-- Tabs -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div class="border-b border-gray-200">
+                <nav class="flex -mb-px">
+                    <button onclick="switchTab('transcript')" class="tab-button flex-1 py-4 px-1 text-center border-b-2 border-indigo-500 font-medium text-sm text-indigo-600">
+                        Transcript
+                    </button>
+                    <button onclick="switchTab('resources')" class="tab-button flex-1 py-4 px-1 text-center border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Resources
+                    </button>
+                    <button onclick="switchTab('discussion')" class="tab-button flex-1 py-4 px-1 text-center border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        Discussion
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Transcript Tab -->
+            <div id="transcript-tab" class="tab-content active p-4">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="relative flex-1 mr-4">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-gray-400"></i>
+                        </div>
+                        <input type="text" id="transcript-search" placeholder="Search transcript..."
+                            class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <button onclick="downloadTranscript()" class="text-gray-600 hover:text-gray-900" title="Download transcript">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </div>
+                
+                <div id="transcript" class="space-y-2 h-[600px] overflow-y-auto">
+                    <!-- Transcript segments will be dynamically populated -->
+                </div>
+            </div>
+
+            <!-- Resources Tab -->
+            <div id="resources-tab" class="tab-content p-4">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Related Resources</h3>
+                <ul class="space-y-4">
+                    <li>
+                        <a href="#" class="block hover:bg-gray-50 p-4 rounded-lg transition-colors duration-150">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-book text-indigo-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Recommended Reading</p>
+                                    <p class="text-sm text-gray-500">{{ lecture.category }} Theory</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="block hover:bg-gray-50 p-4 rounded-lg transition-colors duration-150">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-file-pdf text-indigo-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Lecture Slides</p>
+                                    <p class="text-sm text-gray-500">Download PDF</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Discussion Tab -->
+            <div id="discussion-tab" class="tab-content p-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-medium text-gray-900">Discussion</h3>
+                    <button onclick="showNewDiscussionModal()" class="text-indigo-600 hover:text-indigo-700">
+                        <i class="fas fa-plus"></i> New Topic
+                    </button>
+                </div>
+                <div class="space-y-4">
+                    <div class="border rounded-lg p-4">
+                        <div class="flex items-start space-x-3">
+                            <img class="h-10 w-10 rounded-full" src="https://ui-avatars.com/api/?name=User" alt="">
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="text-sm font-medium text-gray-900">User</h4>
+                                    <span class="text-sm text-gray-500">Just now</span>
+                                </div>
+                                <p class="mt-1 text-sm text-gray-600">
+                                    Share your thoughts on this lecture...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Share Modal -->
+<div id="share-modal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+    <div class="bg-white rounded-lg px-4 pt-5 pb-4 sm:p-6 sm:pb-4 relative max-w-lg w-full">
+        <div class="absolute top-0 right-0 pt-4 pr-4">
+            <button onclick="closeShareModal()" class="text-gray-400 hover:text-gray-500">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div>
+            <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Share Lecture</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Share Link</label>
+                    <div class="flex rounded-md shadow-sm">
+                        <input type="text" readonly id="share-link" value="{{ url_for('view_lecture', lecture_id=lecture.id, _external=True) }}"
+                            class="flex-1 min-w-0 block w-full px-3 py-2 rounded-l-md border border-gray-300 text-sm">
+                        <button onclick="copyShareLink()" class="inline-flex items-center px-4 py-2 border border-l-0 border-gray-300 rounded-r-md bg-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-100">
+                            Copy
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Share with Timestamp</label>
+                    <div class="flex rounded-md shadow-sm">
+                        <input type="text" readonly id="timestamp-link"
+                            class="flex-1 min-w-0 block w-full px-3 py-2 rounded-l-md border border-gray-300 text-sm">
+                        <button onclick="copyTimestampLink()" class="inline-flex items-center px-4 py-2 border border-l-0 border-gray-300 rounded-r-md bg-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-100">
+                            Copy
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Initialize WaveSurfer
+const wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: '#C7D2FE',
+    progressColor: '#6366F1',
+    cursorColor: '#4F46E5',
+    barWidth: 2,
+    barRadius: 3,
+    cursorWidth: 1,
+    height: 100,
+    barGap: 2,
+    responsive: true,
+    normalize: true
+})
+
+// Load audio file
+wavesurfer.load("{{ url_for('serve_file', filename=lecture.media_path) }}")
+
+// Load transcript
+fetch("{{ url_for('serve_file', filename=lecture.transcript_path) }}")
+    .then(response => response.text())
+    .then(text => {
+        const transcriptContainer = document.getElementById('transcript')
+        const lines = text.split('\n').filter(line => line.trim())
+        
+        lines.forEach((line, index) => {
+            const [timestamp, ...textParts] = line.split(' ')
+            const div = document.createElement('div')
+            div.className = 'transcript-segment p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150'
+            div.innerHTML = `
+                <div class="flex items-start">
+                    <span class="time-marker">${timestamp}</span>
+                    <p class="ml-3 text-gray-900">${textParts.join(' ')}</p>
+                </div>
+            `
+            div.addEventListener('click', () => {
+                const [minutes, seconds] = timestamp.split(':').map(Number)
+                wavesurfer.setTime(minutes * 60 + seconds)
+            })
+            transcriptContainer.appendChild(div)
+        })
+    })
+    .catch(error => {
+        console.error('Error loading transcript:', error)
+        document.getElementById('transcript').innerHTML = 'Error loading transcript'
+    })
+
+// UI Elements
+const playPauseButton = document.getElementById('playPause')
+const playPauseIcon = playPauseButton.querySelector('i')
+const volumeBtn = document.getElementById('volume-btn')
+const volumeInput = document.getElementById('volume')
+const loadingStatus = document.getElementById('loading-status')
+const errorMessage = document.getElementById('error-message')
+const currentTimeDisplay = document.getElementById('current-time')
+const totalDurationDisplay = document.getElementById('total-duration')
+
+// Play/Pause functionality
+playPauseButton.addEventListener('click', () => {
+    wavesurfer.playPause()
+})
+
+// Previous/Next 10 seconds
+document.getElementById('previous').addEventListener('click', () => {
+    wavesurfer.skip(-10)
+})
+
+document.getElementById('next').addEventListener('click', () => {
+    wavesurfer.skip(10)
+})
+
+// Volume control
+volumeInput.addEventListener('input', (e) => {
+    const volume = e.target.value / 100
+    wavesurfer.setVolume(volume)
+    updateVolumeIcon(volume)
+})
+
+volumeBtn.addEventListener('click', () => {
+    const currentVolume = wavesurfer.getVolume()
+    if (currentVolume > 0) {
+        wavesurfer.setVolume(0)
+        volumeInput.value = 0
+    } else {
+        wavesurfer.setVolume(1)
+        volumeInput.value = 100
+    }
+    updateVolumeIcon(wavesurfer.getVolume())
+})
+
+// Playback speed control
+function toggleSpeedMenu() {
+    const menu = document.getElementById('speed-menu')
+    menu.classList.toggle('hidden')
+}
+
+function setPlaybackSpeed(speed) {
+    wavesurfer.setPlaybackRate(speed)
+    document.getElementById('current-speed').textContent = speed + 'x'
+    document.querySelectorAll('.speed-option').forEach(option => {
+        option.classList.toggle('active', option.textContent === speed + 'x')
+    })
+    toggleSpeedMenu()
+}
+
+// Notes functionality
+let notes = []
+let noteIdCounter = 0
+
+function addNote() {
+    const currentTime = wavesurfer.getCurrentTime()
+    const note = {
+        id: noteIdCounter++,
+        timestamp: currentTime,
+        text: '',
+        isEditing: true
+    }
+    notes.push(note)
+    renderNotes()
+}
+
+function saveNote(id, text) {
+    const note = notes.find(n => n.id === id)
+    if (note) {
+        note.text = text
+        note.isEditing = false
+        renderNotes()
+    }
+}
+
+function deleteNote(id) {
+    notes = notes.filter(n => n.id !== id)
+    renderNotes()
+}
+
+function renderNotes() {
+    const container = document.getElementById('notes-container')
+    container.innerHTML = ''
+    
+    notes.sort((a, b) => a.timestamp - b.timestamp).forEach(note => {
+        const div = document.createElement('div')
+        div.className = 'note bg-gray-50 rounded-lg p-4'
+        
+        if (note.isEditing) {
+            div.innerHTML = `
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm text-gray-500">${formatTime(note.timestamp)}</span>
+                    <button onclick="deleteNote(${note.id})" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <textarea class="w-full p-2 border rounded-md" placeholder="Enter your note..."
+                    onblur="saveNote(${note.id}, this.value)">${note.text}</textarea>
+            `
+        } else {
+            div.innerHTML = `
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm text-gray-500">${formatTime(note.timestamp)}</span>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="editNote(${note.id})" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button onclick="deleteNote(${note.id})" class="text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <p class="text-gray-700">${note.text}</p>
+            `
+        }
+        container.appendChild(div)
+    })
+}
+
+function editNote(id) {
+    const note = notes.find(n => n.id === id)
+    if (note) {
+        note.isEditing = true
+        renderNotes()
+    }
+}
+
+// Tab switching
+function switchTab(tabName) {
+    // Update tab buttons
+    document.querySelectorAll('.tab-button').forEach(button => {
+        const isActive = button.textContent.toLowerCase().includes(tabName)
+        button.classList.toggle('border-indigo-500', isActive)
+        button.classList.toggle('text-indigo-600', isActive)
+        button.classList.toggle('border-transparent', !isActive)
+        button.classList.toggle('text-gray-500', !isActive)
+    })
+
+    // Update tab content
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.toggle('active', content.id === `${tabName}-tab`)
+    })
+}
+
+// Share functionality
+function showShareModal() {
+    document.getElementById('share-modal').classList.remove('hidden')
+}
+
+function closeShareModal() {
+    document.getElementById('share-modal').classList.add('hidden')
+}
+
+function copyShareLink() {
+    const link = document.getElementById('share-link')
+    link.select()
+    document.execCommand('copy')
+    alert('Link copied to clipboard!')
+}
+
+function copyTimestampLink() {
+    const link = document.getElementById('timestamp-link')
+    link.value = `${window.location.origin}${window.location.pathname}?t=${Math.floor(wavesurfer.getCurrentTime())}`
+    link.select()
+    document.execCommand('copy')
+    alert('Link with timestamp copied to clipboard!')
+}
+
+// Download transcript
+function downloadTranscript() {
+    fetch("{{ url_for('serve_file', filename=lecture.transcript_path) }}")
+        .then(response => response.text())
+        .then(text => {
+            const blob = new Blob([text], { type: 'text/plain' })
+            const url = URL.createObjectURL(blob)
+            const a = document.createElement('a')
+            a.href = url
+            a.download = '{{ lecture.title }}-transcript.txt'
+            document.body.appendChild(a)
+            a.click()
+            document.body.removeChild(a)
+            URL.revokeObjectURL(url)
+        })
+        .catch(error => {
+            console.error('Error downloading transcript:', error)
+            alert('Error downloading transcript')
+        })
+}
+
+// WaveSurfer events
+wavesurfer.on('ready', () => {
+    loadingStatus.innerHTML = '<i class="fas fa-check-circle text-green-500"></i> Audio loaded'
+    totalDurationDisplay.textContent = formatTime(wavesurfer.getDuration())
+    errorMessage.classList.add('hidden')
+})
+
+wavesurfer.on('error', (err) => {
+    console.error('WaveSurfer error:', err)
+    loadingStatus.innerHTML = '<i class="fas fa-exclamation-circle text-red-500"></i> Error loading audio'
+    errorMessage.classList.remove('hidden')
+})
+
+wavesurfer.on('play', () => {
+    playPauseIcon.className = 'fas fa-pause'
+})
+
+wavesurfer.on('pause', () => {
+    playPauseIcon.className = 'fas fa-play'
+})
+
+wavesurfer.on('audioprocess', () => {
+    const currentTime = wavesurfer.getCurrentTime()
+    currentTimeDisplay.textContent = formatTime(currentTime)
+    
+    // Update active transcript segment
+    document.querySelectorAll('.transcript-segment').forEach(segment => {
+        const timeMarker = segment.querySelector('.time-marker').textContent
+        const [minutes, seconds] = timeMarker.split(':').map(Number)
+        const segmentTime = minutes * 60 + seconds
+        
+        if (Math.abs(currentTime - segmentTime) < 1) {
+            segment.classList.add('active')
+            segment.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+        } else {
+            segment.classList.remove('active')
+        }
+    })
+})
+
+// Helper functions
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60)
+    const remainingSeconds = Math.floor(seconds % 60)
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
+}
+
+function updateVolumeIcon(volume) {
+    const icon = volumeBtn.querySelector('i')
+    icon.className = volume === 0 
+        ? 'fas fa-volume-mute' 
+        : volume < 0.5 
+            ? 'fas fa-volume-down' 
+            : 'fas fa-volume-up'
+}
+
+// Close modals when clicking outside
+window.addEventListener('click', (e) => {
+    const shareModal = document.getElementById('share-modal')
+    if (e.target === shareModal) {
+        closeShareModal()
+    }
+})
+
+// Close modals and menus on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeShareModal()
+        document.getElementById('speed-menu').classList.add('hidden')
+    }
+})
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    // Check for timestamp in URL
+    const urlParams = new URLSearchParams(window.location.search)
+    const timestamp = urlParams.get('t')
+    if (timestamp) {
+        wavesurfer.on('ready', () => {
+            wavesurfer.setTime(parseInt(timestamp))
+        })
+    }
+})
+</script>
+{% endblock %}
