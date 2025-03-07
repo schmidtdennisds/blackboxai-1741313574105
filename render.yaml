@@ -10,8 +10,12 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: DATABASE_URL
-        value: sqlite:///fresco.db
+        value: sqlite:///data/fresco.db
+      - key: FLASK_ENV
+        value: production
+      - key: UPLOAD_FOLDER
+        value: /data/uploads
     disk:
-      name: uploads
-      mountPath: /uploads
+      name: data
+      mountPath: /data
       sizeGB: 1
