@@ -10,15 +10,16 @@ import urllib.parse
 from datetime import datetime, timedelta
 
 # Set up paths
+DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 if os.environ.get('FLASK_ENV') == 'production':
-    DATA_DIR = '/data'
-    UPLOAD_FOLDER = os.path.join(DATA_DIR, 'uploads')
-    DB_PATH = 'sqlite:///data/fresco.db'
+    UPLOAD_FOLDER = os.path.join(DATA_DIR, 'instance', 'uploads')
+    DB_PATH = 'sqlite:///instance/fresco.db'
 else:
-    DATA_DIR = os.path.dirname(os.path.abspath(__file__))
     UPLOAD_FOLDER = os.path.join(DATA_DIR, 'uploads')
     DB_PATH = 'sqlite:///fresco.db'
 
+# Create necessary directories
+os.makedirs(os.path.join(DATA_DIR, 'instance'), exist_ok=True)
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 app = Flask(__name__, static_url_path='')
