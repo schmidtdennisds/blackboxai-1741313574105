@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliography - Fresco Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="../index.html" class="text-2xl font-bold text-gray-900">Fresco</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="../index.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Home
+                        </a>
+                        <a href="../lecture.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Lectures
+                        </a>
+                        <a href="model.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Model
+                        </a>
+                        <a href="bibliography.html" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Bibliography
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <a href="../signin.html" class="text-gray-500 hover:text-gray-700">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Bibliography</h1>
+            <p class="text-xl text-gray-600">A comprehensive collection of research articles and references to Fresco's work</p>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search references..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                    <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+                </div>
+                <div>
+                    <select class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                        <option value="">Filter by Type</option>
+                        <option value="article">Academic Articles</option>
+                        <option value="book">Books</option>
+                        <option value="paper">Research Papers</option>
+                        <option value="thesis">Theses</option>
+                    </select>
+                </div>
+                <div>
+                    <select class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                        <option value="">Sort by Date</option>
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bibliography List -->
+        <div class="space-y-6">
+            <!-- Academic Article -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mb-2">
+                            Academic Article
+                        </span>
+                        <h2 class="text-xl font-semibold text-gray-900 mb-2">Resource-Based Economy: A Systematic Review</h2>
+                        <p class="text-gray-600 mb-4">Smith, J., & Johnson, M. (2023). Journal of Sustainable Economics, 15(2), 45-67.</p>
+                        <p class="text-gray-700">A comprehensive analysis of Jacque Fresco's resource-based economy model and its potential implementation in modern society.</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="text-indigo-600 hover:text-indigo-700">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="text-indigo-600 hover:text-indigo-700">
+                            <i class="fas fa-quote-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research Paper -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 mb-2">
+                            Research Paper
+                        </span>
+                        <h2 class="text-xl font-semibold text-gray-900 mb-2">Social Engineering Through Environmental Design</h2>
+                        <p class="text-gray-600 mb-4">Brown, R. (2022). Environmental Design Quarterly, 28(4), 112-134.</p>
+                        <p class="text-gray-700">Examining Fresco's principles of environmental design and their impact on social behavior and community development.</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="text-indigo-600 hover:text-indigo-700">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="text-indigo-600 hover:text-indigo-700">
+                            <i class="fas fa-quote-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thesis -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 mb-2">
+                            Thesis
+                        </span>
+                        <h2 class="text-xl font-semibold text-gray-900 mb-2">The Venus Project: A Case Study in Sustainable Urban Planning</h2>
+                        <p class="text-gray-600 mb-4">Wilson, E. (2021). MIT Department of Urban Studies and Planning.</p>
+                        <p class="text-gray-700">A doctoral thesis analyzing the architectural and urban planning principles of The Venus Project.</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="text-indigo-600 hover:text-indigo-700">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="text-indigo-600 hover:text-indigo-700">
+                            <i class="fas fa-quote-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-8 flex items-center justify-between">
+            <div class="flex-1 flex justify-between sm:hidden">
+                <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                    Previous
+                </button>
+                <button class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                    Next
+                </button>
+            </div>
+            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                <div>
+                    <p class="text-sm text-gray-700">
+                        Showing <span class="font-medium">1</span> to <span class="font-medium">3</span> of <span class="font-medium">12</span> results
+                    </p>
+                </div>
+                <div>
+                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                        <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            <span class="sr-only">Previous</span>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            1
+                        </button>
+                        <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            2
+                        </button>
+                        <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            3
+                        </button>
+                        <button class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            <span class="sr-only">Next</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="text-white">
+                    <h3 class="text-lg font-semibold">Fresco Learning Platform</h3>
+                    <p class="mt-2 text-gray-300">© 2024 All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
