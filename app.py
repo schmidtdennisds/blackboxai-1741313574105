@@ -24,6 +24,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-key-please-change')
+app.config['DEBUG'] = os.environ.get('FLASK_ENV') != 'production'
 csrf = CSRFProtect(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', DB_PATH)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
