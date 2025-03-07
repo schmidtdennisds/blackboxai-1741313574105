@@ -1,0 +1,17 @@
+Steps: 
+Install python 3.10 pip 
+Install openai via pip3.10
+Install jupyter for 3.10 python 
+
+Commands: 
+
+#INSTALL PIP3.10
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python3.10 get-pip.py
+
+#INSTALL OPENAI
+pip3.10 install openai-whisper
+
+#INSTALL JUPYTER FOR PYTHON 3.10
+python3.10 -m pip install ipykernel
+python3.10 -m ipykernel install --user --name python3.10 --display-name "Python 3.10"
