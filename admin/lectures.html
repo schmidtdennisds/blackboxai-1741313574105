@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Lectures - Fresco Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="../index.html" class="text-2xl font-bold text-gray-900">Fresco</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="upload.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Upload
+                        </a>
+                        <a href="lectures.html" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Manage Lectures
+                        </a>
+                        <a href="users.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Users
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-sm font-medium text-gray-500">Admin Panel</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Search and Filters -->
+        <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+            <div class="flex-1 max-w-lg">
+                <div class="relative">
+                    <input type="text" placeholder="Search lectures..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <select class="form-select rounded-md border-gray-300 py-2 pl-3 pr-10 text-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                    <option>All Categories</option>
+                    <option>Social Systems</option>
+                    <option>Technology</option>
+                    <option>Economics</option>
+                </select>
+                <select class="form-select rounded-md border-gray-300 py-2 pl-3 pr-10 text-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                    <option>All Status</option>
+                    <option>Published</option>
+                    <option>Draft</option>
+                    <option>Archived</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Lectures Table -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                <h2 class="text-lg font-medium text-gray-900">All Lectures</h2>
+                <a href="upload.html" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                    <i class="fas fa-plus mr-2"></i>
+                    New Lecture
+                </a>
+            </div>
+            <div class="min-w-full divide-y divide-gray-200">
+                <div class="bg-gray-50 px-6 py-3 grid grid-cols-12 gap-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <div class="col-span-4">Title</div>
+                    <div class="col-span-2">Category</div>
+                    <div class="col-span-1">Level</div>
+                    <div class="col-span-1">Duration</div>
+                    <div class="col-span-2">Status</div>
+                    <div class="col-span-2">Actions</div>
+                </div>
+                <div class="divide-y divide-gray-200 bg-white">
+                    <!-- Lecture Item 1 -->
+                    <div class="px-6 py-4 grid grid-cols-12 gap-4 hover:bg-gray-50">
+                        <div class="col-span-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-video text-gray-400 mr-3"></i>
+                                <div>
+                                    <div class="text-sm font-medium text-gray-900">Introduction to Social Systems</div>
+                                    <div class="text-sm text-gray-500">Last updated 2 days ago</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="text-sm text-gray-900">Social Systems</span>
+                        </div>
+                        <div class="col-span-1">
+                            <span class="px-2 py-1 text-xs font-medium text-indigo-600 bg-indigo-100 rounded-full">
+                                Beginner
+                            </span>
+                        </div>
+                        <div class="col-span-1">
+                            <span class="text-sm text-gray-900">45 min</span>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="px-2 py-1 text-xs font-medium text-green-600 bg-green-100 rounded-full">
+                                Published
+                            </span>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="flex items-center space-x-3">
+                                <button class="text-gray-400 hover:text-gray-500">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="text-gray-400 hover:text-gray-500">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-gray-400 hover:text-red-500">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lecture Item 2 -->
+                    <div class="px-6 py-4 grid grid-cols-12 gap-4 hover:bg-gray-50">
+                        <div class="col-span-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-video text-gray-400 mr-3"></i>
+                                <div>
+                                    <div class="text-sm font-medium text-gray-900">Resource Based Economy</div>
+                                    <div class="text-sm text-gray-500">Last updated 5 days ago</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="text-sm text-gray-900">Economics</span>
+                        </div>
+                        <div class="col-span-1">
+                            <span class="px-2 py-1 text-xs font-medium text-green-600 bg-green-100 rounded-full">
+                                Intermediate
+                            </span>
+                        </div>
+                        <div class="col-span-1">
+                            <span class="text-sm text-gray-900">60 min</span>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="px-2 py-1 text-xs font-medium text-yellow-600 bg-yellow-100 rounded-full">
+                                Draft
+                            </span>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="flex items-center space-x-3">
+                                <button class="text-gray-400 hover:text-gray-500">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="text-gray-400 hover:text-gray-500">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-gray-400 hover:text-red-500">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="bg-white px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+                <div class="flex-1 flex justify-between sm:hidden">
+                    <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Previous
+                    </button>
+                    <button class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Next
+                    </button>
+                </div>
+                <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                    <div>
+                        <p class="text-sm text-gray-700">
+                            Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">20</span> results
+                        </p>
+                    </div>
+                    <div>
+                        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                            <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">Previous</span>
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                1
+                            </button>
+                            <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                2
+                            </button>
+                            <button class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">Next</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
