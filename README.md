@@ -24,9 +24,18 @@ A modern learning platform featuring lecture management, synchronized transcript
    - Add the following environment variables:
      - `SECRET_KEY`: (Render will auto-generate this)
      - `FLASK_ENV`: production
-     - `DATABASE_URL`: sqlite:///fresco.db
+     - `DATABASE_URL`: sqlite:///data/fresco.db
+     - `UPLOAD_FOLDER`: /data/uploads
 
-The application will be automatically deployed and available at your Render URL.
+Important Notes:
+- The database and uploads will be stored in the `/data` directory which is persistent storage on Render
+- The first time you access the application, it will automatically create the database and admin user
+- Make sure to change the admin password after first login
+
+## Default Admin Account
+
+- Email: admin@fresco.com
+- Password: admin123 (change this immediately after first login)
 
 ## Local Development
 
@@ -45,36 +54,20 @@ The application will be automatically deployed and available at your Render URL.
    python app.py
    ```
 
-## Default Admin Account
-
-- Email: admin@fresco.com
-- Password: admin123 (change this in production)
-
 ## Environment Variables
 
 - `SECRET_KEY`: Secret key for session management
 - `FLASK_ENV`: Set to 'production' for production environment
-- `DATABASE_URL`: Database connection URL
-- `UPLOAD_FOLDER`: Path for uploaded files
+- `DATABASE_URL`: Database connection URL (defaults to sqlite:///data/fresco.db in production)
+- `UPLOAD_FOLDER`: Path for uploaded files (defaults to /data/uploads in production)
 - `SESSION_LIFETIME`: Session lifetime in minutes (default: 60)
 
-## Security Features
+## Troubleshooting
 
-- CSRF protection
-- Secure password hashing
-- HTTPS enforcement in production
-- Session management
-- Role-based access control
+If you encounter database errors:
+1. Check the Render logs to ensure the database is being created
+2. Verify the DATABASE_URL environment variable is set correctly
+3. Ensure the /data directory has proper permissions
+4. Check if the application can write to the uploads directory
 
-## File Structure
-
-```
-fresco-learning/
-├── app.py              # Main application file
-├── requirements.txt    # Python dependencies
-├── Procfile           # Render deployment configuration
-├── render.yaml        # Render service configuration
-├── templates/         # HTML templates
-│   ├── admin/        # Admin panel templates
-│   └── ...           # Other templates
-└── uploads/          # Media storage
+For any other issues, check the application logs in the Render dashboard.
