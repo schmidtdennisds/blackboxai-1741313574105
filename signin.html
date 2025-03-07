@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Fresco Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <a href="index.html" class="text-center text-3xl font-bold text-gray-900">Fresco</a>
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                Sign in to your account
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+                Or
+                <a href="lecture.html" class="font-medium text-indigo-600 hover:text-indigo-500">
+                    browse our lectures
+                </a>
+            </p>
+        </div>
+
+        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                <form id="signin-form" class="space-y-6" onsubmit="handleSubmit(event)">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">
+                            Email address
+                        </label>
+                        <div class="mt-1">
+                            <input id="email" name="email" type="email" autocomplete="email" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700">
+                            Password
+                        </label>
+                        <div class="mt-1">
+                            <input id="password" name="password" type="password" autocomplete="current-password" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input id="remember-me" name="remember-me" type="checkbox"
+                                class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                            <label for="remember-me" class="ml-2 block text-sm text-gray-900">
+                                Remember me
+                            </label>
+                        </div>
+
+                        <div class="text-sm">
+                            <button type="button" onclick="showResetModal()" class="font-medium text-indigo-600 hover:text-indigo-500">
+                                Forgot your password?
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Error Alert -->
+                    <div id="error-alert" class="hidden rounded-md bg-red-50 p-4">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-exclamation-circle text-red-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-red-800" id="error-message"></h3>
+                            </div>
+                            <div class="ml-auto pl-3">
+                                <div class="-mx-1.5 -my-1.5">
+                                    <button type="button" onclick="hideError()" class="inline-flex rounded-md bg-red-50 p-1.5 text-red-500 hover:bg-red-100">
+                                        <span class="sr-only">Dismiss</span>
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Sign in
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Password Reset Modal -->
+                <div id="password-reset-modal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+                    <div class="bg-white rounded-lg px-4 pt-5 pb-4 sm:p-6 sm:pb-4 relative max-w-lg w-full">
+                        <div class="absolute top-0 right-0 pt-4 pr-4">
+                            <button type="button" onclick="closeResetModal()" class="text-gray-400 hover:text-gray-500">
+                                <span class="sr-only">Close</span>
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Reset Password</h3>
+                            <form id="reset-form" onsubmit="handleResetSubmit(event)" class="space-y-4">
+                                <div>
+                                    <label for="reset-email" class="block text-sm font-medium text-gray-700">
+                                        Email address
+                                    </label>
+                                    <div class="mt-1">
+                                        <input type="email" id="reset-email" name="reset-email" required
+                                            class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    </div>
+                                </div>
+                                <div id="reset-error" class="hidden text-sm text-red-600"></div>
+                                <div id="reset-success" class="hidden text-sm text-green-600"></div>
+                                <button type="submit"
+                                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Send Reset Link
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white text-gray-500">
+                                Or continue with
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-2 gap-3">
+                        <div>
+                            <a href="#"
+                                class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <i class="fab fa-google"></i>
+                                <span class="ml-2">Google</span>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="#"
+                                class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <i class="fab fa-facebook"></i>
+                                <span class="ml-2">Facebook</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showError(message) {
+            const errorAlert = document.getElementById('error-alert');
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.textContent = message;
+            errorAlert.classList.remove('hidden');
+        }
+
+        function hideError() {
+            document.getElementById('error-alert').classList.add('hidden');
+        }
+
+        function showResetModal() {
+            document.getElementById('password-reset-modal').classList.remove('hidden');
+        }
+
+        function closeResetModal() {
+            document.getElementById('password-reset-modal').classList.add('hidden');
+            document.getElementById('reset-form').reset();
+            document.getElementById('reset-error').classList.add('hidden');
+            document.getElementById('reset-success').classList.add('hidden');
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Basic validation
+            if (!email || !password) {
+                showError('Please fill in all fields');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showError('Please enter a valid email address');
+                return;
+            }
+
+            // Password validation (minimum 6 characters)
+            if (password.length < 6) {
+                showError('Password must be at least 6 characters long');
+                return;
+            }
+
+            // If validation passes, redirect to dashboard
+            window.location.href = 'dashboard.html';
+        }
+
+        function handleResetSubmit(event) {
+            event.preventDefault();
+            const email = document.getElementById('reset-email').value;
+            const errorDiv = document.getElementById('reset-error');
+            const successDiv = document.getElementById('reset-success');
+
+            // Basic validation
+            if (!email) {
+                errorDiv.textContent = 'Please enter your email address';
+                errorDiv.classList.remove('hidden');
+                successDiv.classList.add('hidden');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                errorDiv.textContent = 'Please enter a valid email address';
+                errorDiv.classList.remove('hidden');
+                successDiv.classList.add('hidden');
+                return;
+            }
+
+            // If validation passes, show success message
+            errorDiv.classList.add('hidden');
+            successDiv.textContent = 'Password reset link has been sent to your email';
+            successDiv.classList.remove('hidden');
+
+            // Close modal after 3 seconds
+            setTimeout(() => {
+                closeResetModal();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
