@@ -1,0 +1,76 @@
+<!-- Navigation -->
+<nav class="bg-white shadow fixed w-full top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <!-- Logo and Main Nav -->
+            <div class="flex">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="/" class="text-2xl font-bold text-gray-900">Fresco</a>
+                </div>
+                
+                <!-- Main Navigation -->
+                <div class="hidden sm:ml-8 sm:flex sm:items-center space-x-8">
+                    <a href="/" class="nav-link" data-active="home">Home</a>
+                    <a href="/lecture" class="nav-link" data-active="lectures">Lectures</a>
+                    <a href="/about/model" class="nav-link" data-active="about">About</a>
+                    <a href="/store/products" class="nav-link" data-active="store">Store</a>
+                    <a href="/donate/general" class="nav-link" data-active="donate">Donate</a>
+                    <a href="/subscription" class="nav-link" data-active="pricing">Pricing</a>
+                </div>
+            </div>
+
+            <!-- Right Navigation -->
+            <div class="flex items-center space-x-6">
+                <a href="/store/cart" class="text-gray-500 hover:text-indigo-600 relative">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span class="absolute -top-2 -right-2 bg-indigo-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">3</span>
+                </a>
+                <a href="/signin" class="text-gray-500 hover:text-indigo-600 font-medium">Sign In</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .nav-link {
+        @apply text-gray-500 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors duration-150 relative;
+    }
+    .nav-link[aria-current="page"] {
+        @apply text-indigo-600;
+    }
+    .nav-link[aria-current="page"]::after {
+        content: '';
+        @apply absolute bottom-0 left-0 w-full h-0.5 bg-indigo-600;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add padding to body to account for fixed header
+    document.body.style.paddingTop = '4rem';
+    
+    // Get current page path
+    const currentPath = window.location.pathname;
+    
+    // Set active states for navigation items
+    document.querySelectorAll('[data-active]').forEach(element => {
+        const section = element.getAttribute('data-active');
+        if (currentPath.includes(section)) {
+            element.setAttribute('aria-current', 'page');
+        }
+    });
+
+    // Fix absolute paths to work with the current server setup
+    const basePath = window.location.pathname.startsWith('/project/sandbox/user-workspace') 
+        ? '/project/sandbox/user-workspace'
+        : '';
+        
+    document.querySelectorAll('a[href^="/"]').forEach(link => {
+        if (!link.href.startsWith(window.location.origin + basePath)) {
+            link.href = basePath + link.getAttribute('href');
+        }
+    });
+});</script>
