@@ -1,0 +1,15 @@
+{
+  "name": "user-workspace",
+  "version": "1.0.0",
+  "description": "A modern learning platform featuring lecture management, synchronized transcripts, and user authentication.",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^4.0.11"
+  }
+}
