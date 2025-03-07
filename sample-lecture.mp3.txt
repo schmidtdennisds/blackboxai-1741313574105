@@ -1,0 +1,12 @@
+This is a placeholder file. To test the audio lecture player:
+
+1. Replace this file with an actual MP3 file named 'sample-lecture.mp3'
+2. The audio file should be approximately 75 seconds long to match the provided transcript timestamps
+3. The transcript segments are timed as follows:
+   - 0-15s: "Welcome to this introduction to social systems."
+   - 15-30s: "Today we'll explore how our environment shapes human behavior and social structures."
+   - 30-45s: "The way we organize our cities, our resources, and our social institutions has a profound impact on human development."
+   - 45-60s: "Let's begin by understanding the basic principles of social systems design."
+   - 60-75s: "A social system is more than just a collection of people; it's an interconnected network of relationships and interactions."
+
+Note: You can use any MP3 file for testing, but you may want to adjust the transcript timestamps in lecture.html to match your audio content.
