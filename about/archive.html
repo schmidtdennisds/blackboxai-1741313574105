@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive - Fresco Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .archive-card {
+            transition: transform 0.2s ease-in-out;
+        }
+        .archive-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="../index.html" class="text-2xl font-bold text-gray-900">Fresco</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="../index.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Home
+                        </a>
+                        <a href="../lecture.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Lectures
+                        </a>
+                        <a href="archive.html" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            Archive
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <a href="../signin.html" class="text-gray-500 hover:text-gray-700">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Archive Collection</h1>
+            <p class="text-xl text-gray-600">Explore our comprehensive archive of Jacque Fresco's work and legacy</p>
+        </div>
+
+        <!-- Archive Categories -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Lectures Category -->
+            <div class="bg-white rounded-lg shadow-sm p-6 archive-card">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-microphone-alt text-2xl text-indigo-600 mr-3"></i>
+                    <h2 class="text-xl font-semibold text-gray-900">Lectures</h2>
+                </div>
+                <p class="text-gray-600 mb-4">Complete collection of recorded lectures spanning multiple decades.</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-center text-gray-700">
+                        <i class="fas fa-check text-green-500 mr-2"></i>
+                        <span>Early Era (1960s-1970s)</span>
+                    </li>
+                    <li class="flex items-center text-gray-700">
+                        <i class="fas fa-check text-green-500 mr-2"></i>
+                        <span>Middle Period (1980s-1990s)</span>
+                    </li>
+                    <li class="flex items-center text-gray-700">
+                        <i class="fas fa-check text-green-500 mr-2"></i>
+                        <span>Recent Works (2000s-Present)</span>
+                    </li>
+                </ul>
+                <div class="text-sm text-gray-500">
+                    <i class="fas fa-archive mr-1"></i>
+                    500+ items
+                </div>
+            </div>
+
+            <!-- Designs Category -->
+            <div class="bg-white rounded-lg shadow-sm p-6 archive-card">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-drafting-compass text-2xl text-indigo-600 mr-3"></i>
+                    <h2 class="text-xl font-semibold text-gray-900">Designs</h2>
+                </div>
+                <p class="text-gray-600 mb-4">Technical drawings, blueprints, and conceptual designs.</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-center text-gray-700">
+                        <i class="fas fa-check text-green-500 mr-2"></i>
+                        <span>Architectural Plans</span>
+                    </li>
+                    <li class="flex items-center text-gray-700">
+                        <i class="fas fa-check text-green-500 mr-2"></i>
+                        <span>City Layouts</span>
+                    </li>
+                    <li class="flex items-center text-gray-700">
+                        <i class="fas fa-check text-green-500 mr-2"></i>
+                        <span>Transportation Systems</span>
+                    </li>
+                </ul>
+                <div class="text-sm text-gray-500">
+                    <i class="fas fa-archive mr-1"></i>
+                    1,000+ items
+                </div>
+            </div>
+
+            <!-- Publications Category -->
+            <div class="bg-white rounded-lg shadow-sm p-6 archive-card">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-book text-2xl text-indigo-600 mr-3"></i>
+                    <h2 class="text-xl font-semibold text-gray-900">Publications</h2>
+                </div>
+                <p class="text-gray-600 mb-4">Books, articles, and written materials.</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-center text-gray-700">
+                        <i class="fas fa-check text-green-500 mr-2"></i>
+                        <span>Published Books</span>
+                    </li>
+                    <li class="flex items-center text-gray-700">
+                        <i class="fas fa-check text-green-500 mr-2"></i>
+                        <span>Research Papers</span>
+                    </li>
+                    <li class="flex items-center text-gray-700">
+                        <i class="fas fa-check text-green-500 mr-2"></i>
+                        <span>Articles & Essays</span>
+                    </li>
+                </ul>
+                <div class="text-sm text-gray-500">
+                    <i class="fas fa-archive mr-1"></i>
+                    200+ items
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Collections -->
+        <div class="bg-white rounded-lg shadow-sm p-8 mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Featured Collections</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Collection 1 -->
+                <div class="border rounded-lg p-4">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Early Lectures Series</h3>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                            Digitized
+                        </span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Rare recordings from the 1960s and 1970s, featuring foundational concepts.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500">50 items</span>
+                        <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+                            View Collection
+                            <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Collection 2 -->
+                <div class="border rounded-lg p-4">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Design Blueprints</h3>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            New
+                        </span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Recently discovered technical drawings and architectural plans.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-500">75 items</span>
+                        <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+                            View Collection
+                            <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preservation Status -->
+        <div class="bg-indigo-50 rounded-lg p-8">
+            <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0">
+                    <i class="fas fa-shield-alt text-3xl text-indigo-600"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Preservation Status</h3>
+                    <p class="text-gray-600 mb-4">Our archive is continuously being digitized and preserved for future generations. All materials are stored in climate-controlled environments and backed up using M-DISC technology.</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span class="text-sm text-gray-700">75% Digitized</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-yellow-500 mr-2"></i>
+                            <span class="text-sm text-gray-700">25% In Progress</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="text-white">
+                    <h3 class="text-lg font-semibold">Fresco Learning Platform</h3>
+                    <p class="mt-2 text-gray-300">© 2024 All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
