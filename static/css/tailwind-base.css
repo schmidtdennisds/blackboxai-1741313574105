@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles can be added here */
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Custom components can be defined here */
+@layer components {
+  .transcript-segment.active {
+    @apply bg-indigo-50 border-l-3 border-indigo-500;
+  }
+
+  .speed-option {
+    @apply transition-all duration-200;
+  }
+
+  .speed-option:hover {
+    @apply bg-indigo-50;
+  }
+
+  .speed-option.active {
+    @apply bg-indigo-100 text-indigo-600;
+  }
+
+  .note {
+    @apply transition-all duration-200;
+  }
+
+  .note:hover {
+    @apply translate-x-1;
+  }
+}
+
+/* Custom utilities can be defined here */
+@layer utilities {
+  .tab-content {
+    @apply hidden;
+  }
+
+  .tab-content.active {
+    @apply block;
+  }
+}
