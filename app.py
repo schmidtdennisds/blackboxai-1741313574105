@@ -9,14 +9,22 @@ import os
 import urllib.parse
 from datetime import datetime, timedelta
 
-# Create uploads directory
-UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
+# Set up paths
+if os.environ.get('FLASK_ENV') == 'production':
+    DATA_DIR = '/data'
+    UPLOAD_FOLDER = os.path.join(DATA_DIR, 'uploads')
+    DB_PATH = 'sqlite:///data/fresco.db'
+else:
+    DATA_DIR = os.path.dirname(os.path.abspath(__file__))
+    UPLOAD_FOLDER = os.path.join(DATA_DIR, 'uploads')
+    DB_PATH = 'sqlite:///fresco.db'
+
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 app = Flask(__name__, static_url_path='')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-key-please-change')
 csrf = CSRFProtect(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///fresco.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', DB_PATH)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = os.environ.get('UPLOAD_FOLDER', UPLOAD_FOLDER)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=int(os.environ.get('SESSION_LIFETIME', 60)))
@@ -409,7 +417,7 @@ def store_products():
 def not_found_error(error):
     return render_template('404.html'), 404
 
-if __name__ == '__main__':
+def init_db():
     with app.app_context():
         db.create_all()
         # Create admin user if it doesn't exist
@@ -421,4 +429,9 @@ if __name__ == '__main__':
             db.session.commit()
             print("Admin user created successfully!")
         print("Database initialized!")
+
+# Initialize database on startup
+init_db()
+
+if __name__ == '__main__':
     app.run(debug=True, port=5001)
